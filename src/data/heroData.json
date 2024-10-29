@@ -9,7 +9,8 @@
                 {
                     "primary": true,
                     "href": "#",
-                    "label": "Magni ratione"
+                    "label": "Magni ratione",
+                    "icon": "icon-1"
                 },
                 {
                     "primary": false,
