@@ -4,15 +4,15 @@ import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
 import { useIconPath } from '../hooks/useIconPath';
 
-function ContentSection() {
-  const { data: contentData, error: contentError } = useContentData('repudiandae');
+function ContentSection({ dataName }) {
+  const { data: contentData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
 
-  const item = heroContent?.items.find(item => item.name === 'repudiandae');
+  const item = heroContent?.items.find(item => item.name === dataName);
   const iconPath = useIconPath(contentData?.heroLink?.icon);
 
   if (contentError || heroError) {
-    return <p>Error: {contentError?.message || heroError?.message}</p>;
+    return;
   }
   if (!contentData || !heroContent) {
     return <p>Loading...</p>;
@@ -23,8 +23,13 @@ function ContentSection() {
 
   //<img className="hidden md:block w-96 h-96 object-cover rounded-full" src="https://connecteam.com/static/frontend-home-task/jpg/repudiandae-small.jpg" alt="" />
   return (
-    <section className='container mx-auto lg:flex justify-between items-center gap-40'>
-      <img className='md:w-96 h-96 object-cover sm:rounded-full' src="https://connecteam.com/static/frontend-home-task/jpg/repudiandae-small.jpg" alt="" />
+    <section className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4  xl:w-3/5'>
+
+      <img
+        className="w-screen lg:w-96 h-96 object-cover sm:rounded lg:rounded-full"
+        src={`https://connecteam.com/static/frontend-home-task/jpg/${dataName}-small.jpg`}
+        alt=""
+      />
       <div className="container mx-auto p-4">
         <div className="content-section flex flex-col mb-8">
 

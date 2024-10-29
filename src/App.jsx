@@ -7,12 +7,16 @@ import Hero from './components/Hero'
 import LogosSlider from './components/LogosSlider'
 import ContentSection from './components/ContentSection'
 
+
 function App() {
   return (
     <>
       <Hero />
       <LogosSlider />
-      <ContentSection />
+      <ContentSection dataName="repudiandae" />
+      <ContentSection dataName="sit-at-enim" />
+      <ContentSection dataName="dolore-ipsum" />
+      <ContentSection dataName="praesentium-aspernatur" />
     </>
   );
 }
