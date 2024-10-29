@@ -1,0 +1,19 @@
+    .site-header {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-section {
+        background-image: url('https://connecteam.com/static/frontend-home-task/jpg/home-large.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 920px;
+
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            background-image: url('https://connecteam.com/static/frontend-home-task/jpg/home-small.jpg');
+            height: 780px;
+
+        }
+    }
