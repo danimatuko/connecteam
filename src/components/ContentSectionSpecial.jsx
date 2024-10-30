@@ -36,11 +36,11 @@ function ContentSectionSpecial({ dataName }) {
       {/* Overlay for the transparent background color */}
       <div className='absolute inset-0 opacity-50' style={{ backgroundColor: fillColor }} /> {/* Increased opacity for better coverage */}
 
-      <div className='container mx-auto p-5 relative z-10'>
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex flex-col">
+      <div className='container mx-auto p-5 relative z-10 lg:w-4/5 xl:w-3/5 xl:text-center'>
+        <div className="flex items-center lg:justify-center gap-3 mb-4">
+          <div className="flex flex-col lg:items-center">
             {/* Use as React Component */}
-            <SectionIcon className="w-16 h-16 mb-2" fill={fillColor} />
+            <SectionIcon className="w-16 h-16 mb-2" />
             {/* Use as Image Source */}
             <p className="text-sm text-white">{contentData.label}</p>
             <h2
@@ -55,8 +55,8 @@ function ContentSectionSpecial({ dataName }) {
           className="description text-white font-medium text-lg"
           dangerouslySetInnerHTML={{ __html: contentData.description }}
         />
-        <div className='my-5 w-full h-0.5' style={{ backgroundColor: "rgba(255, 255, 255, 0.08)" }}></div>
-        <div className='flex flex-col gap-4 py-5'>
+        <div className='my-5 w-full lg:w-fit h-0.5' style={{ backgroundColor: "rgba(255, 255, 255, 0.08)" }}></div>
+        <div className='flex flex-col justify-center lg:flex-row gap-4 py-5'>
           <Button
             text={linkLabel}
             color={fillColor}
