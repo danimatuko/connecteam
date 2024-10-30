@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
@@ -10,10 +9,10 @@ function ContentSection({ dataName }) {
   const { heroContent, error: heroError } = useHeroContent('heroData');
 
   const item = heroContent?.items.find(item => item.name === dataName);
-  const iconPath = useIconPath(contentData?.heroLink?.icon);
+  const iconPath = useIconPath(contentData?.icon);
 
   if (contentError || heroError) {
-    return;
+    return null; // Return null to render nothing on error
   }
   if (!contentData || !heroContent) {
     return <p>Loading...</p>;
@@ -22,18 +21,18 @@ function ContentSection({ dataName }) {
   // Generate the color for the SVG fill
   const fillColor = `hsla(${contentData.colorHue}, 100%, 43%, 1)`;
 
-  //<img className="hidden md:block w-96 h-96 object-cover rounded-full" src="https://connecteam.com/static/frontend-home-task/jpg/repudiandae-small.jpg" alt="" />
-  return (
-    <section className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4  xl:w-3/5'>
+  // Adjust dataName if specific condition is met
+  const adjustedDataName = dataName === 'sit-at-enim' ? 'sit-et-enim' : dataName;
 
+  return (
+    <section className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4 xl:w-3/5'>
       <img
         className="w-screen lg:w-96 h-96 object-cover sm:rounded lg:rounded-full"
-        src={`https://connecteam.com/static/frontend-home-task/jpg/${dataName}-small.jpg`}
+        src={`https://connecteam.com/static/frontend-home-task/jpg/${adjustedDataName}-small.jpg`}
         alt=""
       />
       <div className="container mx-auto p-4">
         <div className="content-section flex flex-col mb-8">
-
           <div className="flex items-center gap-3 mb-4">
             <img className="w-16" src={iconPath} alt="" />
             <div className="flex flex-col">
@@ -52,9 +51,8 @@ function ContentSection({ dataName }) {
           />
         </div>
         <div className='flex items-center sm:gap-x-4'>
-
           <a className="font-bold text-lg" href="#" style={{ color: fillColor }}>
-            {item.linkLabel}
+            {item?.linkLabel}
           </a>
           <span>
             <svg
