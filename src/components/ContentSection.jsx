@@ -54,7 +54,7 @@ function ContentSection({ dataName }) {
           <a className="font-bold text-lg" href="#" style={{ color: fillColor }}>
             {item?.linkLabel}
           </a>
-          <span className='ml-2'>
+          <span className='ml-auto md:ml-1'>
             <svg
               width="16"
               height="16"

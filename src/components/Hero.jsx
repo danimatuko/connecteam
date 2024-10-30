@@ -15,14 +15,8 @@ function Hero() {
 
   return (
     <section className="hero-section relative text-white flex flex-col justify-center items-center px-10">
-      <Header />
 
       <div className="flex flex-col md:w-3/4 lg:w-1/3 self-start lg:ml-[20%] mt-60 lg:-mt-52">
-        <img
-          className="hidden lg:block invert mb-24 w-[320px]"
-          src="https://connecteam.com/static/frontend-home-task/svg/logo.svg"
-          alt="logo"
-        />
 
         <h1 className="text-4xl md:text-6xl font-bold mb-4 font-merriweather">{title}</h1>
         <p className="mb-6 font-inter">{subtitle}</p>

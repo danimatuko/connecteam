@@ -1,25 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import LogosSlider from './components/LogosSlider'
-import ContentSection from './components/ContentSection'
-import ContentSectionSpecial from './components/ContentSectionSpecial'
+import './App.css';
 
+// Importing components
+import Hero from './components/Hero';
+import ContentSection from './components/ContentSection';
+import ContentSectionSpecial from './components/ContentSectionSpecial';
+import Nav from './components/Nav';
 
-function App() {
+const App = () => {
   return (
     <>
       <Hero />
-      <LogosSlider />
+      <Nav />
       <ContentSection dataName="repudiandae" />
       <ContentSection dataName="sit-at-enim" />
-      <ContentSectionSpecial dataName="dolore-ipsum" />
+      <ContentSection dataName="dolore-ipsum" />
       <ContentSection dataName="praesentium-aspernatur" />
+      <ContentSectionSpecial dataName="dolore-ipsum" />
     </>
   );
-}
+};
 
-export default App
+export default App;
