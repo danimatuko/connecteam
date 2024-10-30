@@ -5,7 +5,7 @@ import "../style/button.css"
 const Button = ({ text, color = '#3498db', variant = 'filled', icon, iconPosition = 'left' }) => {
   return (
     <button
-      className={`btn ${variant === 'outlined' ? 'btn-outlined' : 'btn-filled'}`}
+      className={`btn font-merriweather ${variant === 'outlined' ? 'btn-outlined' : 'btn-filled'}`}
       style={{
         backgroundColor: variant === 'filled' ? color : 'transparent',
         color: variant === 'filled' ? '#fff' : color,

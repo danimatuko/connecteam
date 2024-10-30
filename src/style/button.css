@@ -14,11 +14,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 
-
     svg {
         width: 1rem;
         height: 1rem;
-        fill: red !important;
     }
 }
 
@@ -26,7 +24,17 @@
     filter: brightness(1.1);
 }
 
+/* Updated .btn-outlined styles */
+.btn-outlined {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+    /* Blur effect */
+}
+
 .btn-outlined:hover {
-    background-color: currentColor;
+    background-color: rgba(255, 153, 0, 1);
+    /* Set hover background color */
     color: #fff;
+    /* Change text color on hover */
 }

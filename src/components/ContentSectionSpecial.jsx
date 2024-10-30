@@ -10,14 +10,13 @@ import Icon6 from "../assets/icons/icon-6.svg?react";
 import Icon7 from "../assets/icons/icon-7.svg?react";
 
 
-function ContentSectionSpecial({ dataName }) {
+function ContentSectionSpecial({ dataName = 'heroData' }) {
   const { data: contentData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
   const item = heroContent?.items.find(item => item.name === dataName);
 
   // Check if item exists before destructuring
   const { additionalLinks, linkLabel } = item || {};
-  console.log(additionalLinks)
   const iconPath = useIconPath(contentData?.heroLink?.icon);
 
   if (contentError || heroError) {
@@ -46,7 +45,7 @@ function ContentSectionSpecial({ dataName }) {
             {/* Use as Image Source */}
             <p className="text-sm text-white">{contentData.label}</p>
             <h2
-              className="text-4xl font-bold mb-4"
+              className="text-4xl font-bold mb-4 font-merriweather"
               style={{ color: fillColor }}
             >
               {contentData.title}

@@ -38,7 +38,7 @@ function ContentSection({ dataName }) {
             <div className="flex flex-col">
               <p className="text-sm text-gray-600">{contentData.label}</p>
               <h2
-                className="text-2xl font-bold mb-4"
+                className="text-2xl font-bold mb-4 font-merriweather"
                 style={{ color: fillColor }}
               >
                 {contentData.title}
@@ -50,11 +50,11 @@ function ContentSection({ dataName }) {
             dangerouslySetInnerHTML={{ __html: contentData.description }}
           />
         </div>
-        <div className='flex items-center sm:gap-x-4'>
+        <div className='flex items-center sm:gap-x-4 font-merriweather'>
           <a className="font-bold text-lg" href="#" style={{ color: fillColor }}>
             {item?.linkLabel}
           </a>
-          <span>
+          <span className='ml-2'>
             <svg
               width="16"
               height="16"
