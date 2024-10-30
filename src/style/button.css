@@ -13,6 +13,13 @@
     border: 2px solid;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+
+
+    svg {
+        width: 1rem;
+        height: 1rem;
+        fill: red !important;
+    }
 }
 
 .btn-filled:hover {

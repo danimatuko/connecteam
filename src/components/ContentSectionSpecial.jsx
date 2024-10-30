@@ -6,6 +6,8 @@ import { useIconPath } from '../hooks/useIconPath';
 import Arrow from './svg/Arrow';
 import Button from './Button';
 import SectionIcon from "../assets/icons/icon-4.svg?react";
+import Icon6 from "../assets/icons/icon-6.svg?react";
+import Icon7 from "../assets/icons/icon-7.svg?react";
 
 
 function ContentSectionSpecial({ dataName }) {
@@ -15,7 +17,7 @@ function ContentSectionSpecial({ dataName }) {
 
   // Check if item exists before destructuring
   const { additionalLinks, linkLabel } = item || {};
-
+  console.log(additionalLinks)
   const iconPath = useIconPath(contentData?.heroLink?.icon);
 
   if (contentError || heroError) {
@@ -30,11 +32,11 @@ function ContentSectionSpecial({ dataName }) {
 
   return (
     <section
-      className='relative bg-no-repeat bg-cover bg-center'
+      className='relative bg-no-repeat bg-cover bg-center my-20'
       style={{ backgroundImage: `url(https://connecteam.com/static/frontend-home-task/jpg/${dataName}-small.jpg)` }}
     >
       {/* Overlay for the transparent background color */}
-      <div className='absolute inset-0 opacity-50' style={{ backgroundColor: fillColor }} /> {/* Increased opacity for better coverage */}
+      <div className='absolute inset-0 opacity-90' style={{ backgroundColor: "rgba(0, 76, 108, 1)" }} /> {/* Increased opacity for better coverage */}
 
       <div className='container mx-auto p-5 relative z-10 lg:w-4/5 xl:w-3/5 xl:text-center'>
         <div className="flex items-center lg:justify-center gap-3 mb-4">
@@ -64,16 +66,21 @@ function ContentSectionSpecial({ dataName }) {
             icon={<Arrow />}
             iconPosition="right"
           />
-          {additionalLinks?.map((link, index) => (
-            <Button
-              key={index}
-              text={link.label}
-              color={fillColor}
-              variant="outlined"
-              icon={<Arrow color={fillColor} />}
-              iconPosition="left"
-            />
-          ))}
+          <Button
+            text={linkLabel}
+            color={fillColor}
+            variant="outlined"
+            icon={< Icon6 />}
+            iconPosition="left"
+          />
+          <Button
+            text={linkLabel}
+            color={fillColor}
+            variant="outlined"
+            icon={<Icon7 />}
+            iconPosition="left"
+          />
+
         </div>
       </div>
     </section>
