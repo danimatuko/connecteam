@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import LogosSlider from './components/LogosSlider'
 import ContentSection from './components/ContentSection'
+import ContentSectionSpecial from './components/ContentSectionSpecial'
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       <LogosSlider />
       <ContentSection dataName="repudiandae" />
       <ContentSection dataName="sit-at-enim" />
-      <ContentSection dataName="dolore-ipsum" />
+      <ContentSectionSpecial dataName="dolore-ipsum" />
       <ContentSection dataName="praesentium-aspernatur" />
     </>
   );

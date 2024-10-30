@@ -1,0 +1,25 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Centers content horizontally */
+    gap: 8px;
+    /* Adds spacing between icon and text */
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 9999px;
+    /* Fully rounded corners */
+    border: 2px solid;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-filled:hover {
+    filter: brightness(1.1);
+}
+
+.btn-outlined:hover {
+    background-color: currentColor;
+    color: #fff;
+}
