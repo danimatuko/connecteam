@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
-import { useIconPath } from '../hooks/useIconPath';
-import { generateSectionId } from '../utils/generateSectionId'; // Import the helper function
+import { generateSectionId } from '../utils/generateSectionId';
+import { loadIcon } from '../utils/iconLoader'; // Import the loader function
 
 function ContentSection({ dataName }) {
   const { data: contentData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
-  const iconPath = useIconPath(contentData?.icon);
-
   const isLoading = !contentData || !heroContent;
   const hasError = contentError || heroError;
+
+  const [icon, setIcon] = useState(null);
+
+  useEffect(() => {
+    const fetchIcon = async () => {
+      if (contentData?.icon) {
+        const loadedIcon = await loadIcon(contentData.icon);
+        setIcon(loadedIcon);
+      }
+    };
+
+    fetchIcon();
+  }, [contentData?.icon]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -20,11 +31,10 @@ function ContentSection({ dataName }) {
     return null; // Or return an error message component
   }
 
-  // Generate section ID using the helper function
   const sectionId = generateSectionId(contentData.title);
-
   const adjustedDataName = dataName === 'sit-at-enim' ? 'sit-et-enim' : dataName;
-  const fillColor = `hsla(${contentData.colorHue}, 100%, 43%, 1)`;
+  const fillColor = `hsla(${contentData.colorHue}, 100%, 43%, 1)`; // Full opacity for text
+  const backgroundColor = `hsla(${contentData.colorHue}, 100%, 43%, 0.1)`; // Lower opacity for background
   const item = heroContent?.items.find(item => item.name === dataName);
 
   return (
@@ -37,7 +47,14 @@ function ContentSection({ dataName }) {
       <div className="container mx-auto p-4">
         <div className="content-section flex flex-col mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <img className="w-16" src={iconPath} alt="" />
+            {icon && (
+              <img
+                className="w-12 rounded-full p-2"
+                src={icon}
+                alt="section-logo"
+                style={{ backgroundColor: backgroundColor }} // Apply the background color with opacity
+              />
+            )}
             <div className="flex flex-col">
               <p className="text-sm text-gray-600">{contentData.label}</p>
               <h2

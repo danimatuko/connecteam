@@ -14,7 +14,6 @@ const App = () => {
       <Nav />
       <ContentSection dataName="repudiandae" />
       <ContentSection dataName="sit-at-enim" />
-      <ContentSection dataName="dolore-ipsum" />
       <ContentSectionSpecial dataName="dolore-ipsum" />
       <ContentSection dataName="praesentium-aspernatur" />
       <Footer dataName="footer" />
