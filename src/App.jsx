@@ -15,8 +15,8 @@ const App = () => {
       <ContentSection dataName="repudiandae" />
       <ContentSection dataName="sit-at-enim" />
       <ContentSection dataName="dolore-ipsum" />
-      <ContentSection dataName="praesentium-aspernatur" />
       <ContentSectionSpecial dataName="dolore-ipsum" />
+      <ContentSection dataName="praesentium-aspernatur" />
       <Footer dataName="footer" />
     </>
   );

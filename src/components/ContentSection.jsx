@@ -28,7 +28,7 @@ function ContentSection({ dataName }) {
   const item = heroContent?.items.find(item => item.name === dataName);
 
   return (
-    <section id={sectionId} className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4 xl:w-3/5'>
+    <section id={sectionId} className='container mx-auto lg:flex even:flex-row-reverse justify-between items-center gap-40 mb-4 xl:w-3/5'>
       <img
         className="w-screen lg:w-96 h-96 object-cover sm:rounded lg:rounded-full"
         src={`https://connecteam.com/static/frontend-home-task/jpg/${adjustedDataName}-small.jpg`}
