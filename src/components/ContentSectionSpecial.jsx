@@ -39,13 +39,12 @@ function ContentSectionSpecial({ dataName = 'heroData' }) {
       <div className='absolute inset-0 opacity-90' style={{ backgroundColor: "rgba(0, 76, 108, 1)" }} />
 
       <div className='container mx-auto p-5 relative z-10 lg:w-4/5 xl:w-3/5 xl:text-center'>
-        <div className="flex items-center lg:justify-center gap-3 mb-4">
+        <div className="flex flex-col items-start lg:items-center lg:justify-center gap-3 mb-4">
+          <div className='rounded-full p-4' style={{ backgroundColor: fillColor }} >
+            <SectionIcon className="w-16 h-14 mb-2 invert p-1" />
+          </div>
           <div className="flex flex-col lg:items-center">
-            <div className='rounded-full p-4' style={{ backgroundColor: fillColor }} >
-
-              <SectionIcon className="w-16 h-16 mb-2 invert " />
-            </div>
-            <p className="text-sm mt-3" style={{ color: 'rgba(156, 184, 195, 1)' }}>{contentData.label}</p>
+            <p className="text-sm" style={{ color: 'rgba(156, 184, 195, 1)' }}>{contentData.label}</p>
             <h2
               className="text-4xl font-bold mb-4 font-merriweather"
               style={{ color: fillColor }}

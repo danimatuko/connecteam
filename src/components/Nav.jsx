@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../style/nav.css';
 import { useIconPath } from '../hooks/useIconPath';
-import { generateSectionId } from '../utils/generateSectionId'; // Import the helper function
+import { generateSectionId } from '../utils/generateSectionId';
+import { loadIcon } from '../utils/iconLoader'; // Import the loader function
 
 // Import JSON files directly
 import dataRepudiandae from '../data/repudiandae.json';
@@ -21,6 +22,7 @@ const jsonData = [
 const Nav = () => {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false); // State to track scroll status
+  const [icons, setIcons] = useState({}); // State to store loaded icons
 
   useEffect(() => {
     const header = document.querySelector('.site-header');
@@ -47,17 +49,34 @@ const Nav = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Load icons for each navigation link
+    const loadIcons = async () => {
+      const loadedIcons = {};
+      for (const data of jsonData) {
+        if (data.icon) {
+          const iconPath = await loadIcon(data.icon);
+          loadedIcons[data.title] = iconPath;
+        }
+      }
+      setIcons(loadedIcons);
+    };
+
+    loadIcons();
+  }, []);
+
   return (
     <>
       <Header logoClass={isScrolled ? '' : 'invert'} /> {/* Pass the logo class based on scroll state */}
       <nav
         ref={navRef}
-        className="sticky-nav flex justify-center gap-x-20 py-10 overflow-x-scroll md:overflow-x-auto transition-colors duration-300"
+        className="sticky-nav flex justify-between md:justify-center lg:gap-x-10 py-10 overflow-x-scroll md:overflow-x-auto transition-colors duration-300"
       >
         {jsonData.map((data, index) => {
           const sectionId = generateSectionId(data.title); // Use the helper function to generate the ID
           const linkColor = `hsla(${data.colorHue}, 100%, 43%, 1)`;
           const hoverBackgroundColor = `hsla(${data.colorHue}, 100%, 90%, 0.2)`;
+          const iconSrc = icons[data.title]; // Retrieve the loaded icon path
 
           return (
             <a
@@ -66,19 +85,20 @@ const Nav = () => {
               className="flex justify-between items-center px-4 py-2 rounded transition-colors duration-300"
               style={{
                 color: linkColor,
-                scrollBehavior: 'smooth', // Optional for smooth scrolling
               }}
               onMouseOver={(e) => e.currentTarget.style.backgroundColor = hoverBackgroundColor}
               onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
             >
-              <img
-                src={useIconPath(data.icon)}
-                alt={data.title}
-                className="w-4 mr-1"
-              />
-              <p className="text-lg font-semibold whitespace-nowrap">
+              {iconSrc && (
+                <img
+                  src={iconSrc}
+                  alt={data.title}
+                  className="w-4 mr-1"
+                />
+              )}
+              <span className="text-lg font-semibold whitespace-nowrap">
                 {data.title}
-              </p>
+              </span>
             </a>
           );
         })}
