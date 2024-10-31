@@ -3,7 +3,7 @@
 A responsive landing page built with React, designed to closely follow the provided Figma design specifications. The project features a hero section, four content sections, and a footer with an operable form, all while implementing a design faithfully, maintaining high code quality, and demonstrating independence.
 
 ## Preview
-![Connecteam Landing Page Preview]('./src/assets/screenshot.png')
+<img src="src/assets/screenshot.png" width="500px"/>
 
 ## Technologies Used
 
