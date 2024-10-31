@@ -1,7 +1,7 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import '../style/nav.css';
 import { useIconPath } from '../hooks/useIconPath';
+import { generateSectionId } from '../utils/generateSectionId'; // Import the helper function
 
 // Import JSON files directly
 import dataRepudiandae from '../data/repudiandae.json';
@@ -54,24 +54,38 @@ const Nav = () => {
         ref={navRef}
         className="sticky-nav flex justify-center gap-x-20 py-10 overflow-x-scroll md:overflow-x-auto transition-colors duration-300"
       >
-        {jsonData.map((data, index) => (
-          <div key={index} className="flex justify-between items-center">
-            <img
-              src={useIconPath(data.icon)}
-              alt={data.title}
-              className="w-4 mr-1"
-            />
-            <p
-              className="text-lg font-semibold whitespace-nowrap"
-              style={{ color: `hsla(${data.colorHue}, 100%, 43%, 1)` }}
+        {jsonData.map((data, index) => {
+          const sectionId = generateSectionId(data.title); // Use the helper function to generate the ID
+          const linkColor = `hsla(${data.colorHue}, 100%, 43%, 1)`;
+          const hoverBackgroundColor = `hsla(${data.colorHue}, 100%, 90%, 0.2)`;
+
+          return (
+            <a
+              key={index}
+              href={`#${sectionId}`} // Use generated ID in href
+              className="flex justify-between items-center px-4 py-2 rounded transition-colors duration-300"
+              style={{
+                color: linkColor,
+                scrollBehavior: 'smooth', // Optional for smooth scrolling
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = hoverBackgroundColor}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
             >
-              {data.title}
-            </p>
-          </div>
-        ))}
+              <img
+                src={useIconPath(data.icon)}
+                alt={data.title}
+                className="w-4 mr-1"
+              />
+              <p className="text-lg font-semibold whitespace-nowrap">
+                {data.title}
+              </p>
+            </a>
+          );
+        })}
       </nav>
     </>
   );
 };
 
 export default Nav;
+

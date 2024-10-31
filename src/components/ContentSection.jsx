@@ -1,31 +1,34 @@
-
 import React from 'react';
 import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
 import { useIconPath } from '../hooks/useIconPath';
+import { generateSectionId } from '../utils/generateSectionId'; // Import the helper function
 
 function ContentSection({ dataName }) {
   const { data: contentData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
-
-  const item = heroContent?.items.find(item => item.name === dataName);
   const iconPath = useIconPath(contentData?.icon);
 
-  if (contentError || heroError) {
-    return null; // Return null to render nothing on error
-  }
-  if (!contentData || !heroContent) {
+  const isLoading = !contentData || !heroContent;
+  const hasError = contentError || heroError;
+
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  // Generate the color for the SVG fill
-  const fillColor = `hsla(${contentData.colorHue}, 100%, 43%, 1)`;
+  if (hasError) {
+    return null; // Or return an error message component
+  }
 
-  // Adjust dataName if specific condition is met
+  // Generate section ID using the helper function
+  const sectionId = generateSectionId(contentData.title);
+
   const adjustedDataName = dataName === 'sit-at-enim' ? 'sit-et-enim' : dataName;
+  const fillColor = `hsla(${contentData.colorHue}, 100%, 43%, 1)`;
+  const item = heroContent?.items.find(item => item.name === dataName);
 
   return (
-    <section className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4 xl:w-3/5'>
+    <section id={sectionId} className='container mx-auto lg:flex odd:flex-row-reverse justify-between items-center gap-40 mb-4 xl:w-3/5'>
       <img
         className="w-screen lg:w-96 h-96 object-cover sm:rounded lg:rounded-full"
         src={`https://connecteam.com/static/frontend-home-task/jpg/${adjustedDataName}-small.jpg`}
@@ -73,3 +76,4 @@ function ContentSection({ dataName }) {
 }
 
 export default ContentSection;
+
