@@ -6,6 +6,7 @@ import { useIconPath } from '../hooks/useIconPath';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import RadioInput from './RadioInput';
+import TextArea from './TextArea';
 
 const Footer = ({ dataName }) => {
   const { data: footerData, error: contentError } = useContentData(dataName);
@@ -58,6 +59,12 @@ const Footer = ({ dataName }) => {
             <RadioInput label={formFields[4].name} options={formFields[4].options} />
           </div>
         </div>
+        <InputField label={formFields[1].name} />
+        <TextArea
+          label={formFields[5].name}
+          initialValue="" // Pass initial value if needed
+          fillColor="rgba(255, 153, 0, 1)"
+        />
       </div>
     </footer>
   );
