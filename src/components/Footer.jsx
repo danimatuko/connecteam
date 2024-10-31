@@ -1,16 +1,17 @@
 
-// Footer.js
 import React from 'react';
 import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
 import { useIconPath } from '../hooks/useIconPath';
 import InputField from './InputField';
+import SelectField from './SelectField';
 
 const Footer = ({ dataName }) => {
   const { data: footerData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
   const iconPath = useIconPath(footerData?.icon);
-
+  const formFields = footerData?.form.fields
+  console.log(formFields)
   if (contentError || heroError) {
     return null;
   }
@@ -45,8 +46,10 @@ const Footer = ({ dataName }) => {
           <div className="footer-form d-flex flex-col items-center">
             <div className="form-title mb-6">{footerData.form.title}</div>
             <div className="footer-form d-flex flex-col justify-center items-center w-full">
-              <InputField label="First Name" />
-              <InputField label="Last Name" />
+              <InputField label={formFields[0].name} />
+              <InputField label={formFields[1].name} />
+
+              <SelectField label={formFields[4].name} options={formFields[4].options} />
             </div>
           </div>
         </div>

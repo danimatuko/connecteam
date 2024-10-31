@@ -4,6 +4,11 @@ import React, { useState } from 'react';
 
 const InputField = ({ label, type = 'text', fillColor = 'rgba(255, 153, 0, 1)' }) => {
   const [focused, setFocused] = useState(false);
+  const [value, setValue] = useState('');
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
 
   return (
     <div className="relative w-full mb-4">
@@ -14,6 +19,8 @@ const InputField = ({ label, type = 'text', fillColor = 'rgba(255, 153, 0, 1)' }
           ${focused ? `border-[${fillColor}]` : 'border-gray-300'}`}
         onFocus={() => setFocused(true)}
         onBlur={(e) => setFocused(!!e.target.value)}
+        onChange={handleChange}
+        value={value}
         style={{ borderColor: focused ? fillColor : 'rgba(209, 213, 219, 1)' }}
       />
       <label
