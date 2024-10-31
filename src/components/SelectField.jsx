@@ -9,12 +9,7 @@ const SelectField = ({ label, options = [], fillColor = 'rgba(255, 153, 0, 1)' }
 
   return (
     <div className="relative w-full mb-4">
-      <label
-        className="block mb-1 text-black font-bold"
-        style={{ color: focused ? fillColor : 'rgba(106, 106, 106, 1)' }}
-      >
-        {label}
-      </label>
+
       <select
         className="w-full border-2 py-2 px-3 text-gray-900 rounded-full outline-none transition-all duration-200 appearance-none"
         onFocus={() => setFocused(true)}

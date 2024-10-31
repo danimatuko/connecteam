@@ -20,11 +20,7 @@ const Footer = ({ dataName }) => {
     return <p>Loading...</p>;
   }
 
-  const fillColor = "rgba(255, 153, 0, 1)"; const options = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
-  ];
+  const fillColor = "rgba(255, 153, 0, 1)";
 
   return (
     <footer className="py-6" style={{ backgroundColor: "rgba(248, 248, 248, 1)" }}>
@@ -59,7 +55,7 @@ const Footer = ({ dataName }) => {
           </div>
 
           <div className="footer-form">
-            <RadioInput label="Select an option" options={options} />
+            <RadioInput label={formFields[4].name} options={formFields[4].options} />
           </div>
         </div>
       </div>
