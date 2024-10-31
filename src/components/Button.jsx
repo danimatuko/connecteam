@@ -1,11 +1,17 @@
-
 import React from 'react';
-import "../style/button.css"
+import "../style/button.css";
 
-const Button = ({ text, color = '#3498db', variant = 'filled', icon, iconPosition = 'left' }) => {
+const Button = ({
+  text,
+  color = '#3498db',
+  variant = 'filled',
+  icon,
+  iconPosition = 'left',
+  additionalClasses = '', // New additionalClasses prop
+}) => {
   return (
     <button
-      className={`btn font-merriweather ${variant === 'outlined' ? 'btn-outlined' : 'btn-filled'}`}
+      className={`btn font-merriweather ${variant === 'outlined' ? 'btn-outlined' : 'btn-filled'} ${additionalClasses}`} // Include additionalClasses prop here
       style={{
         backgroundColor: variant === 'filled' ? color : 'transparent',
         color: variant === 'filled' ? '#fff' : color,
@@ -20,3 +26,4 @@ const Button = ({ text, color = '#3498db', variant = 'filled', icon, iconPositio
 };
 
 export default Button;
+

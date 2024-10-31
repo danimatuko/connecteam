@@ -1,19 +1,14 @@
-
 import React from 'react';
 import { useContentData } from '../hooks/useContentData';
 import { useHeroContent } from '../hooks/useHeroContent';
 import { useIconPath } from '../hooks/useIconPath';
-import InputField from './InputField';
-import SelectField from './SelectField';
-import RadioInput from './RadioInput';
-import TextArea from './TextArea';
+import FooterForm from './FooterForm'; // Import the new FooterForm component
 
 const Footer = ({ dataName }) => {
   const { data: footerData, error: contentError } = useContentData(dataName);
   const { heroContent, error: heroError } = useHeroContent('heroData');
   const iconPath = useIconPath(footerData?.icon);
-  const formFields = footerData?.form.fields
-  console.log(formFields)
+
   if (contentError || heroError) {
     return null;
   }
@@ -26,8 +21,10 @@ const Footer = ({ dataName }) => {
   return (
     <footer className="py-6" style={{ backgroundColor: "rgba(248, 248, 248, 1)" }}>
       <div className="container mx-auto px-4">
-        <div className="footer-inner d-flex flex-col items-center">
-          <div className="footer-content d-flex flex-col items-center">
+
+        <div className="footer-inner flex flex-col xl:flex-row items-center justify-center gap-x-28">
+
+          <div className="footer-content flex-col items-center xl:w-1/4">
             <h2 className="font-merriweather text-xl font-bold mb-6" style={{ color: fillColor }}>
               {footerData.intro.title}
             </h2>
@@ -45,29 +42,14 @@ const Footer = ({ dataName }) => {
             </div>
             <div className='my-5 w-full lg:w-fit h-0.5' style={{ backgroundColor: "rgba(0, 0, 0, 0.08)" }}></div>
           </div>
-          <div className="footer-form d-flex flex-col items-center">
-            <div className="form-title mb-6">{footerData.form.title}</div>
-            <div className="footer-form d-flex flex-col justify-center items-center w-full">
-              <InputField label={formFields[0].name} />
-              <InputField label={formFields[1].name} />
 
-              <SelectField label={formFields[4].name} options={formFields[4].options} />
-            </div>
-          </div>
+          <FooterForm formFields={footerData.form} /> {/* Use the new FooterForm component */}
 
-          <div className="footer-form">
-            <RadioInput label={formFields[4].name} options={formFields[4].options} />
-          </div>
         </div>
-        <InputField label={formFields[1].name} />
-        <TextArea
-          label={formFields[5].name}
-          initialValue="" // Pass initial value if needed
-          fillColor="rgba(255, 153, 0, 1)"
-        />
       </div>
     </footer>
   );
 };
 
 export default Footer;
+
